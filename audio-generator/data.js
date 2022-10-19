@@ -1,6 +1,4 @@
-export const week = '2022-10-17'
-
-const data = [
+export default [
     {
         category: "VVC",
         words: [
@@ -50,5 +48,3 @@ const data = [
         description: "Vowel followed by a consonent, ending in 'e'",
     },
 ]
-
-export default data

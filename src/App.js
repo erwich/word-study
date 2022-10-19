@@ -9,11 +9,12 @@ import {
   setWordColumns,
   resetWordColumns,
   resetGameMode,
-  completeBlindSortGame,
+  completeGame,
   fixAnswers,
+  setNewWritingPromptWord,
 } from "./features/sortGame";
 
-import { Alert, Button } from "@material-tailwind/react";
+import { Alert } from "@material-tailwind/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
@@ -21,6 +22,8 @@ import Header from "./components/Header";
 import WordColumn from "./components/WordColumn";
 import { WordBox } from "./components/WordBox";
 import GameCompleteModal from "./components/GameCompleteModal";
+
+import WritingPrompt from './components/WritingPrompt'
 
 import wordColumns from "./data";
 
@@ -31,6 +34,8 @@ const App = () => {
   const wordBoxWords = useSelector(({ sortGame }) => sortGame.wordBoxWords);
   const complete = useSelector(({ sortGame }) => sortGame.complete);
   const outcome = useSelector(({ sortGame }) => sortGame.outcome);
+
+  const writingPromptWord = useSelector(({sortGame}) => sortGame.writingPromptWord)
 
   const [showError, setShowError] = useState(false);
   const [error, setError] = useState("");
@@ -56,19 +61,28 @@ const App = () => {
   };
 
   const startWritingSortGame = () => {
+    dispatch(
+      setWordBoxWords(
+        wordColumns
+          .map(({ words }) => words)
+          .flat()
+          .map((value) => ({ value, sort: Math.random() }))
+          .sort((a, b) => a.sort - b.sort)
+          .map(({ value }) => value)
+      )
+    );
     dispatch(resetWordColumns());
     dispatch(setGameMode("writing"));
     setStartSeconds(Math.round(Date.now() / 1000));  };
+    dispatch( setNewWritingPromptWord() )
 
   const handleFinishGame = () => {
-    if (wordBoxWords.length > 0) {
+    if (wordBoxWords.length > 0 && gameMode == "blind") {
       setError("You still have words left to sort!");
       setShowError(true);
       return;
     }
-    if (gameMode === "blind") {
-      dispatch(completeBlindSortGame());
-    }
+    dispatch(completeGame());
     setEndSeconds(Math.round(Date.now() / 1000));
     setError("");
     setShowError(false);
@@ -130,7 +144,7 @@ const App = () => {
                 {columns.map(({ category, words, description }, ndx) => (
                   <WordColumn
                     key={ndx}
-                    editable={gameMode === "blind"}
+                    editable={gameMode}
                     header={category}
                     words={words}
                     description={description}
@@ -140,8 +154,11 @@ const App = () => {
               {gameMode === "blind" && wordBoxWords ? (
                 <WordBox words={wordBoxWords} />
               ) : null}
+              {gameMode === "writing" ?
+                <WritingPrompt word={writingPromptWord} />
+                : null }
               <div className="my-2">
-                <Alert show={showError} color="red">
+                <Alert show={showError} dismissible={{ onClose: () => setShowError(false) }} color="red">
                   {error}
                 </Alert>
               </div>

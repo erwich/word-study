@@ -8,6 +8,7 @@ const initialState = {
     ...category,
     words: [],
   })),
+  writingPromptWord: null,
   complete: null,
   outcome: null,
 };
@@ -37,6 +38,7 @@ export const sortGameSlice = createSlice({
     },
     resetGameMode: (state, action) => {
       state.gameMode = null;
+      state.writingPromptWord = null;
       state.complete = false;
       state.outcome = {};
       state.wordBoxWords = [];
@@ -55,7 +57,7 @@ export const sortGameSlice = createSlice({
       }));
       state.wordColumns[ndx].words = [...state.wordColumns[ndx].words, word];
     },
-    completeBlindSortGame: (state, action) => {
+    completeGame: (state, action) => {
       state.complete = true;
       state.outcome = {
         score: state.wordColumns.reduce(
@@ -72,7 +74,7 @@ export const sortGameSlice = createSlice({
             ),
           0
         ),
-        maxScore: state.wordColumns.reduce( (pts, column ) => pts + column.words.length, 0 ),
+        maxScore: data.reduce( (pts, column ) => pts + column.words.length, 0 ),
         errorColumns: state.wordColumns
           .filter((column) =>
             column.words.some(
@@ -88,7 +90,21 @@ export const sortGameSlice = createSlice({
     fixAnswers: (state, action) => {
         state.complete = false
         state.outcome = null
-    }
+    },
+    submitWritingWord: (state, action) => {
+      const { category, word } = action.payload
+      console.log( category, word )
+      const ndx = findWordColumnIndex(state.wordColumns, category);
+      state.wordBoxWords = state.wordBoxWords.filter((w) => w !== word);
+      state.wordColumns = state.wordColumns.map((column) => ({
+        ...column,
+        words: column.words.filter((w) => w !== word),
+      }));
+      state.wordColumns[ndx].words = [...state.wordColumns[ndx].words, word];
+    },
+    setNewWritingPromptWord: (state, action) => {
+      state.writingPromptWord = state.wordBoxWords.length > 0 ? state.wordBoxWords[0] : null
+    },
   },
 });
 
@@ -100,8 +116,10 @@ export const {
   resetWordColumns,
   resetGameMode,
   dropWord,
-  completeBlindSortGame,
+  completeGame,
   fixAnswers,
+  submitWritingWord,
+  setNewWritingPromptWord,
 } = sortGameSlice.actions;
 
 export default sortGameSlice.reducer;

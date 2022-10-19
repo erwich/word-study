@@ -24,7 +24,6 @@ export const sortGameSlice = createSlice({
       state.gameMode = action.payload;
     },
     setWordBoxWords: (state, action) => {
-      console.log("new words", action.payload);
       state.wordBoxWords = action.payload;
     },
     setWordColumns: (state, action) => {
@@ -93,7 +92,6 @@ export const sortGameSlice = createSlice({
     },
     submitWritingWord: (state, action) => {
       const { category, word } = action.payload
-      console.log( category, word )
       const ndx = findWordColumnIndex(state.wordColumns, category);
       state.wordBoxWords = state.wordBoxWords.filter((w) => w !== word);
       state.wordColumns = state.wordColumns.map((column) => ({

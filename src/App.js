@@ -1,12 +1,11 @@
 import "./App.css";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
   setGameMode,
   setWordBoxWords,
-  setWordColumns,
   resetWordColumns,
   resetGameMode,
   completeGame,
@@ -77,7 +76,7 @@ const App = () => {
     dispatch( setNewWritingPromptWord() )
 
   const handleFinishGame = () => {
-    if (wordBoxWords.length > 0 && gameMode == "blind") {
+    if (wordBoxWords.length > 0 && gameMode === "blind") {
       setError("You still have words left to sort!");
       setShowError(true);
       return;
@@ -218,7 +217,6 @@ const App = () => {
             type="button"
             onClick={() => {
               setDark(!isDark);
-              console.log(complete, outcome);
             }}
           >
             {isDark ? `Light Mode ` : `Dark Mode `}

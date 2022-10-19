@@ -9,7 +9,7 @@ const borderColors = {
   blue: `border-blue-500`,
 }
 
-export default ({ text, borderColor }) => {
+const Header = ({ text, borderColor }) => {
   const bgClass = borderColors[borderColor] || `border-amber-500`
   return (
     <h1 className={`
@@ -24,3 +24,5 @@ export default ({ text, borderColor }) => {
       dark:text-slate-100`}>{text}</h1>
   )
 }
+
+export default Header

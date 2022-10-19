@@ -63,18 +63,19 @@ function WritingPrompt({ word }) {
           e.preventDefault();
           submitWord();
         }}
-        className="w-full xl:max-w-2xl"
+        className="flex flex-wrap w-full gap-1"
       >
-        <div className="flex items-center border-b border-teal-500 py-2">
+        <div className="w-full md:w-72 items-center border-b border-teal-500 py-2">
           <input
             className="appearance-none bg-transparent border-none w-full text-gray-700 dark:text-slate-100 mr-3 py-1 px-2 leading-tight focus:outline-none"
             type="text"
             placeholder="Write the word that you hear"
             value={typedWord}
             onChange={(e) => setTypedWord(e.target.value)}
-            aria-label="Full name"
+            aria-label="Word"
           />
-          <div className={`
+        </div>
+        <div className={`
             flex 
             rounded-md 
             dark:bg-slate-900 
@@ -83,35 +84,34 @@ function WritingPrompt({ word }) {
             gap-1
             ${showError && error === SELECT_CATEGORY_ERROR ? 'border-dashed border-2 border-red-500' : null}
             `}
-          >
-            {categories.map((category) => {
-              const bgColor = category === chosenCategory ? 'bg-green-500' : 'bg-gray-500';
-              return (
-                <PillButton
-                  text={category}
-                  key={category}
-                  className={bgColor}
-                  onClick={() => setChosenCategory(category)}
-                />
-              );
-            })}
-          </div>
-          <button
-            className="flex-shrink-0 bg-sky-500 hover:bg-sky-700 border-sky-500 hover:border-sky-700 text-sm border-4 text-white py-1 px-2 rounded mx-1"
-            type="button"
-            onClick={() => {
-              audio.play();
-            }}
-          >
-            Listen
-          </button>
-          <button
-            className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-            type="submit"
-          >
-            Enter
-          </button>
+        >
+          {categories.map((category) => {
+            const bgColor = category === chosenCategory ? 'bg-green-500' : 'bg-gray-500';
+            return (
+              <PillButton
+                text={category}
+                key={category}
+                className={bgColor}
+                onClick={() => setChosenCategory(category)}
+              />
+            );
+          })}
         </div>
+        <button
+          className="bg-sky-500 hover:bg-sky-700 border-sky-500 hover:border-sky-700 text-sm border-4 text-white py-1 px-2 rounded mx-1"
+          type="button"
+          onClick={() => {
+            audio.play();
+          }}
+        >
+          Listen
+        </button>
+        <button
+          className="bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+          type="submit"
+        >
+          Enter
+        </button>
       </form>
       <p className="my-1 px-1 dark:text-slate-100">
         {wordsLeft.length}

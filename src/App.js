@@ -5,7 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+
 import Alert from './components/Alert';
+import Footer from './components/Footer';
 import {
   setGameMode,
   setWordBoxWords,
@@ -90,7 +92,7 @@ function App() {
   const [isDark, setDark] = useState(true);
   return (
     <div className={`${isDark ? 'dark' : ''}`}>
-      <div className="dark:bg-slate-800 min-h-screen">
+      <div className="flex flex-col dark:bg-slate-800 min-h-screen">
         {complete && (
           <GameCompleteModal
             title={
@@ -99,7 +101,7 @@ function App() {
                 : 'Good job! 🎊'
             }
           >
-            {/* body */}
+            {/* modal body */}
             <div className="relative p-6 flex-auto">
               <p className="my-4 text-slate-500 dark:text-slate-100 text-xl leading-relaxed">
                 You scored
@@ -146,7 +148,7 @@ function App() {
             </div>
           </GameCompleteModal>
         )}
-        <div className="container mx-auto pt-2">
+        <div className="container flex-1 mx-auto pt-2">
           <div className="flex flex-col lg:flex-row flex-wrap py-4">
             <div className="px-4 py-4 w-full xl:basis-3/4">
               <Header text="Word Study &#8212; Week of October 17th, 2022" />
@@ -222,9 +224,9 @@ function App() {
             </div>
           </div>
         </div>
-        <footer className="py-4 px-8 bg-white md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 absolute bottom-0">
+        <Footer>
           <button
-            className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 text-sm text-white py-1 px-2 rounded"
+            className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 text-sm text-white py-1 px-2 rounded mt-1"
             type="button"
             onClick={() => {
               setDark(!isDark);
@@ -237,7 +239,7 @@ function App() {
               <FontAwesomeIcon icon={faMoon} />
             )}
           </button>
-        </footer>
+        </Footer>
       </div>
     </div>
   );

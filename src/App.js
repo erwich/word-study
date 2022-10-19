@@ -3,9 +3,9 @@ import './App.css';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Alert } from '@material-tailwind/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import Alert from './components/Alert';
 import {
   setGameMode,
   setWordBoxWords,
@@ -168,7 +168,7 @@ function App() {
                 ? <WritingPrompt word={writingPromptWord} />
                 : null }
               <div className="my-2">
-                <Alert show={showError} dismissible={{ onClose: () => setShowError(false) }} color="red">
+                <Alert show={showError} setShow={setShowError} dismissible color="red">
                   {error}
                 </Alert>
               </div>

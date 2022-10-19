@@ -1,11 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { Alert } from '@material-tailwind/react';
+import Alert from './Alert';
+import PillButton from './PillButton';
 import data, { week } from '../data';
 import {
   submitWritingWord,
   setNewWritingPromptWord,
 } from '../features/sortGame';
+
+const SELECT_CATEGORY_ERROR = 'You need to pick a column to sort this word into!';
 
 function WritingPrompt({ word }) {
   const dispatch = useDispatch();
@@ -35,6 +38,11 @@ function WritingPrompt({ word }) {
       setShowError(true);
       return;
     }
+    if (!chosenCategory) {
+      setError(SELECT_CATEGORY_ERROR);
+      setShowError(true);
+      return;
+    }
     dispatch(
       submitWritingWord({
         category: chosenCategory,
@@ -45,6 +53,7 @@ function WritingPrompt({ word }) {
     setShowError(false);
     setError('');
     setTypedWord('');
+    setChosenCategory('');
   };
 
   return (
@@ -54,7 +63,7 @@ function WritingPrompt({ word }) {
           e.preventDefault();
           submitWord();
         }}
-        className="w-full max-w-xl"
+        className="w-full xl:max-w-2xl"
       >
         <div className="flex items-center border-b border-teal-500 py-2">
           <input
@@ -65,19 +74,28 @@ function WritingPrompt({ word }) {
             onChange={(e) => setTypedWord(e.target.value)}
             aria-label="Full name"
           />
-          <select
-            className={`
-              block bg-white w-1/2 border dark:bg-slate-800 dark:text-slate-100 border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline
+          <div className={`
+            flex 
+            rounded-md 
+            dark:bg-slate-900 
+            px-2 
+            py-2 
+            gap-1
+            ${showError && error === SELECT_CATEGORY_ERROR ? 'border-dashed border-2 border-red-500' : null}
             `}
-            defaultValue={chosenCategory}
-            onChange={(e) => setChosenCategory(e.target.value)}
           >
-            {categories.map((category) => (
-              <option value={category} key={category}>
-                {category}
-              </option>
-            ))}
-          </select>
+            {categories.map((category) => {
+              const bgColor = category === chosenCategory ? 'bg-green-500' : 'bg-gray-500';
+              return (
+                <PillButton
+                  text={category}
+                  key={category}
+                  className={bgColor}
+                  onClick={() => setChosenCategory(category)}
+                />
+              );
+            })}
+          </div>
           <button
             className="flex-shrink-0 bg-sky-500 hover:bg-sky-700 border-sky-500 hover:border-sky-700 text-sm border-4 text-white py-1 px-2 rounded mx-1"
             type="button"
@@ -103,7 +121,7 @@ function WritingPrompt({ word }) {
         words left
       </p>
 
-      <Alert className="mt-3" show={showError} color="red">
+      <Alert className="mt-3" show={showError} setShow={setShowError} dismissible color="red">
         {error}
       </Alert>
     </div>

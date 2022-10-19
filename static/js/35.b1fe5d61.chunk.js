@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[35],{9035:function(e,s,t){e.exports=t.p+"static/media/phone.232efd36221ff315818e.mp3"}}]);

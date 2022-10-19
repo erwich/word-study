@@ -9,7 +9,6 @@ const Word = ({ word, editable, onWordDrop }) => {
     type: `word`,
     item: { word },
     end: (item, monitor) => {
-      console.log(item)
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
         dispatch( dropWord({ category: dropResult.name, word: item.word }) )

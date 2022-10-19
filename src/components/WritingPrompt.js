@@ -1,13 +1,13 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import data, { week } from "../data";
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { Alert } from '@material-tailwind/react';
+import data, { week } from '../data';
 import {
   submitWritingWord,
   setNewWritingPromptWord,
-} from "../features/sortGame";
-import { Alert } from "@material-tailwind/react";
+} from '../features/sortGame';
 
-const WritingPrompt = ({ word }) => {
+function WritingPrompt({ word }) {
   const dispatch = useDispatch();
 
   const validWords = data.map((column) => column.words).flat();
@@ -15,11 +15,11 @@ const WritingPrompt = ({ word }) => {
   const categories = data.map((column) => column.category);
 
   const [chosenCategory, setChosenCategory] = useState(categories[0]);
-  const [typedWord, setTypedWord] = useState("");
-  const [error, setError] = useState("");
-  const [showError, setShowError] = useState("");
+  const [typedWord, setTypedWord] = useState('');
+  const [error, setError] = useState('');
+  const [showError, setShowError] = useState('');
 
-  const wordsLeft = useSelector(({sortGame}) => sortGame.wordBoxWords )
+  const wordsLeft = useSelector(({ sortGame }) => sortGame.wordBoxWords);
 
   useEffect(() => {
     if (week && word) {
@@ -31,7 +31,7 @@ const WritingPrompt = ({ word }) => {
 
   const submitWord = () => {
     if (!validWords.includes(typedWord.toLowerCase())) {
-      setError("Incorrect word. Check the spelling and try again!");
+      setError('Incorrect word. Check the spelling and try again!');
       setShowError(true);
       return;
     }
@@ -39,12 +39,12 @@ const WritingPrompt = ({ word }) => {
       submitWritingWord({
         category: chosenCategory,
         word: typedWord.toLowerCase(),
-      })
+      }),
     );
     dispatch(setNewWritingPromptWord());
-    setShowError(false)
-    setError("")
-    setTypedWord("")
+    setShowError(false);
+    setError('');
+    setTypedWord('');
   };
 
   return (
@@ -95,13 +95,19 @@ const WritingPrompt = ({ word }) => {
           </button>
         </div>
       </form>
-      <p className="my-1 px-1 dark:text-slate-100">{wordsLeft.length}/{validWords.length} words left</p>
+      <p className="my-1 px-1 dark:text-slate-100">
+        {wordsLeft.length}
+        /
+        {validWords.length}
+        {' '}
+        words left
+      </p>
 
       <Alert className="mt-3" show={showError} color="red">
         {error}
       </Alert>
     </div>
   );
-};
+}
 
 export default WritingPrompt;

@@ -1,25 +1,25 @@
-import { useDrag } from 'react-dnd'
+import { useDrag } from 'react-dnd';
 import { useDispatch } from 'react-redux';
 
 import { dropWord } from '../features/sortGame';
 
-const Word = ({ word, editable, onWordDrop }) => {
+function Word({ word, editable }) {
   const dispatch = useDispatch();
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: `word`,
+    type: 'word',
     item: { word },
     end: (item, monitor) => {
-      const dropResult = monitor.getDropResult()
+      const dropResult = monitor.getDropResult();
       if (item && dropResult) {
-        dispatch( dropWord({ category: dropResult.name, word: item.word }) )
+        dispatch(dropWord({ category: dropResult.name, word: item.word }));
       }
     },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
       handlerId: monitor.getHandlerId(),
     }),
-  }))
-  const opacity = isDragging ? `opacity-40` : ``
+  }));
+  const opacity = isDragging ? 'opacity-40' : '';
   return (
     <span
       ref={editable ? drag : null}
@@ -44,6 +44,6 @@ const Word = ({ word, editable, onWordDrop }) => {
       {word}
     </span>
   );
-};
+}
 
 export default Word;

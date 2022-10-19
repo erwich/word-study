@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import data from "../data";
+import { createSlice } from '@reduxjs/toolkit';
+import data from '../data';
 
 const initialState = {
   gameMode: null,
@@ -13,11 +13,11 @@ const initialState = {
   outcome: null,
 };
 
-const findWordColumnIndex = (wordColumns, category) =>
-  wordColumns.findIndex((column) => column.category === category);
+const findWordColumnIndex = (wordColumns, category) => wordColumns
+  .findIndex((column) => column.category === category);
 
 export const sortGameSlice = createSlice({
-  name: "sortGame",
+  name: 'sortGame',
   initialState,
   reducers: {
     setGameMode: (state, action) => {
@@ -29,13 +29,13 @@ export const sortGameSlice = createSlice({
     setWordColumns: (state, action) => {
       state.wordColumns = action.payload;
     },
-    resetWordColumns: (state, action) => {
+    resetWordColumns: (state) => {
       state.wordColumns = data.map((category) => ({
         ...category,
         words: [],
       }));
     },
-    resetGameMode: (state, action) => {
+    resetGameMode: (state) => {
       state.gameMode = null;
       state.writingPromptWord = null;
       state.complete = false;
@@ -56,42 +56,37 @@ export const sortGameSlice = createSlice({
       }));
       state.wordColumns[ndx].words = [...state.wordColumns[ndx].words, word];
     },
-    completeGame: (state, action) => {
+    completeGame: (state) => {
       state.complete = true;
       state.outcome = {
         score: state.wordColumns.reduce(
-          (totalPts, category) =>
-            totalPts +
-            category.words.reduce(
-              (pts, word) =>
-                data[
-                  findWordColumnIndex(state.wordColumns, category.category)
-                ].words.includes(word)
-                  ? pts + 1
-                  : pts,
-              0
+          (totalPts, category) => totalPts
+            + category.words.reduce(
+              (pts, word) => (data[
+                findWordColumnIndex(state.wordColumns, category.category)
+              ].words.includes(word)
+                ? pts + 1
+                : pts),
+              0,
             ),
-          0
+          0,
         ),
-        maxScore: data.reduce( (pts, column ) => pts + column.words.length, 0 ),
+        maxScore: data.reduce((pts, column) => pts + column.words.length, 0),
         errorColumns: state.wordColumns
-          .filter((column) =>
-            column.words.some(
-              (word) =>
-                !data[
-                  findWordColumnIndex(state.wordColumns, column.category)
-                ].words.includes(word)
-            )
-          )
+          .filter((column) => column.words.some(
+            (word) => !data[
+              findWordColumnIndex(state.wordColumns, column.category)
+            ].words.includes(word),
+          ))
           .map((column) => column.category),
       };
     },
-    fixAnswers: (state, action) => {
-        state.complete = false
-        state.outcome = null
+    fixAnswers: (state) => {
+      state.complete = false;
+      state.outcome = null;
     },
     submitWritingWord: (state, action) => {
-      const { category, word } = action.payload
+      const { category, word } = action.payload;
       const ndx = findWordColumnIndex(state.wordColumns, category);
       state.wordBoxWords = state.wordBoxWords.filter((w) => w !== word);
       state.wordColumns = state.wordColumns.map((column) => ({
@@ -100,8 +95,8 @@ export const sortGameSlice = createSlice({
       }));
       state.wordColumns[ndx].words = [...state.wordColumns[ndx].words, word];
     },
-    setNewWritingPromptWord: (state, action) => {
-      state.writingPromptWord = state.wordBoxWords.length > 0 ? state.wordBoxWords[0] : null
+    setNewWritingPromptWord: (state) => {
+      state.writingPromptWord = state.wordBoxWords.length > 0 ? state.wordBoxWords[0] : null;
     },
   },
 });

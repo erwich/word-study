@@ -1,18 +1,20 @@
-import { Tooltip } from "@material-tailwind/react";
-import { useDrop } from "react-dnd";
-import Word from "./Word"
+import { Tooltip } from '@material-tailwind/react';
+import { useDrop } from 'react-dnd';
+import Word from './Word';
 
-const WordColumn = ({ header, words, description, editable, onWordDrop }) => {
-    const [{ canDrop, isOver }, drop] = useDrop(() => ({
-        accept: `word`,
-        drop: () => ({ name: header }),
-        collect: (monitor) => ({
-            isOver: monitor.isOver(),
-            canDrop: monitor.canDrop(),
-        }),
-    }));
-    const borderClass = canDrop && isOver ? `border-dashed border-2 border-gray-200` : ``
-    const heightCheck = words.length ? `` : `h-48`
+function WordColumn({
+  header, words, description, editable, onWordDrop,
+}) {
+  const [{ canDrop, isOver }, drop] = useDrop(() => ({
+    accept: 'word',
+    drop: () => ({ name: header }),
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    }),
+  }));
+  const borderClass = canDrop && isOver ? 'border-dashed border-2 border-gray-200' : '';
+  const heightCheck = words.length ? '' : 'h-48';
   return (
     <div
       className={`
@@ -60,12 +62,12 @@ const WordColumn = ({ header, words, description, editable, onWordDrop }) => {
         </h1>
       </Tooltip>
       <div ref={editable ? drop : null} className={`${borderClass} px-1 py-1 grow`} data-testid="dustbin">
-        {words.map((word, ndx) => (
-          <Word key={word} word={word} editable={ editable } onWordDrop={ onWordDrop } />
+        {words.map((word) => (
+          <Word key={word} word={word} editable={editable} onWordDrop={onWordDrop} />
         ))}
       </div>
     </div>
   );
-};
+}
 
 export default WordColumn;

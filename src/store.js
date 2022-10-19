@@ -1,8 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import sortGameReducer from './features/sortGame'
+import { configureStore } from '@reduxjs/toolkit';
+import sortGameReducer from './features/sortGame';
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     sortGame: sortGameReducer,
   },
-})
+});
+
+export default store;

@@ -1,8 +1,11 @@
-import "./App.css";
+import './App.css';
 
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { Alert } from '@material-tailwind/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import {
   setGameMode,
   setWordBoxWords,
@@ -11,22 +14,18 @@ import {
   completeGame,
   fixAnswers,
   setNewWritingPromptWord,
-} from "./features/sortGame";
+} from './features/sortGame';
 
-import { Alert } from "@material-tailwind/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import Header from './components/Header';
+import WordColumn from './components/WordColumn';
+import WordBox from './components/WordBox';
+import GameCompleteModal from './components/GameCompleteModal';
 
-import Header from "./components/Header";
-import WordColumn from "./components/WordColumn";
-import { WordBox } from "./components/WordBox";
-import GameCompleteModal from "./components/GameCompleteModal";
+import WritingPrompt from './components/WritingPrompt';
 
-import WritingPrompt from './components/WritingPrompt'
+import wordColumns from './data';
 
-import wordColumns from "./data";
-
-const App = () => {
+function App() {
   const gameMode = useSelector(({ sortGame }) => sortGame.gameMode);
   const gameColumns = useSelector(({ sortGame }) => sortGame.wordColumns);
   const columns = gameMode ? gameColumns : wordColumns;
@@ -34,10 +33,10 @@ const App = () => {
   const complete = useSelector(({ sortGame }) => sortGame.complete);
   const outcome = useSelector(({ sortGame }) => sortGame.outcome);
 
-  const writingPromptWord = useSelector(({sortGame}) => sortGame.writingPromptWord)
+  const writingPromptWord = useSelector(({ sortGame }) => sortGame.writingPromptWord);
 
   const [showError, setShowError] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [startSeconds, setStartSeconds] = useState(0);
   const [endSeconds, setEndSeconds] = useState(0);
 
@@ -51,11 +50,11 @@ const App = () => {
           .flat()
           .map((value) => ({ value, sort: Math.random() }))
           .sort((a, b) => a.sort - b.sort)
-          .map(({ value }) => value)
-      )
+          .map(({ value }) => value),
+      ),
     );
     dispatch(resetWordColumns());
-    dispatch(setGameMode("blind"));
+    dispatch(setGameMode('blind'));
     setStartSeconds(Math.round(Date.now() / 1000));
   };
 
@@ -67,50 +66,62 @@ const App = () => {
           .flat()
           .map((value) => ({ value, sort: Math.random() }))
           .sort((a, b) => a.sort - b.sort)
-          .map(({ value }) => value)
-      )
+          .map(({ value }) => value),
+      ),
     );
     dispatch(resetWordColumns());
-    dispatch(setGameMode("writing"));
-    setStartSeconds(Math.round(Date.now() / 1000));  };
-    dispatch( setNewWritingPromptWord() )
+    dispatch(setGameMode('writing'));
+    setStartSeconds(Math.round(Date.now() / 1000));
+  };
+  dispatch(setNewWritingPromptWord());
 
   const handleFinishGame = () => {
-    if (wordBoxWords.length > 0 && gameMode === "blind") {
-      setError("You still have words left to sort!");
+    if (wordBoxWords.length > 0 && gameMode === 'blind') {
+      setError('You still have words left to sort!');
       setShowError(true);
       return;
     }
     dispatch(completeGame());
     setEndSeconds(Math.round(Date.now() / 1000));
-    setError("");
+    setError('');
     setShowError(false);
   };
 
   const [isDark, setDark] = useState(true);
   return (
-    <div className={`${isDark ? `dark` : ``}`}>
+    <div className={`${isDark ? 'dark' : ''}`}>
       <div className="dark:bg-slate-800 min-h-screen">
         {complete && (
           <GameCompleteModal
             title={
               outcome.score < outcome.maxScore
-                ? "Keep Trying! 💪"
-                : "Good job! 🎊"
+                ? 'Keep Trying! 💪'
+                : 'Good job! 🎊'
             }
           >
-            {/*body*/}
+            {/* body */}
             <div className="relative p-6 flex-auto">
               <p className="my-4 text-slate-500 dark:text-slate-100 text-xl leading-relaxed">
-                You scored <strong>{outcome.score}</strong> out of{" "}
-                <strong>{outcome.maxScore}</strong> points
+                You scored
+                {' '}
+                <strong>{outcome.score}</strong>
+                {' '}
+                out of
+                {' '}
+                <strong>{outcome.maxScore}</strong>
+                {' '}
+                points
               </p>
               <p className="my-4 text-slate-500 dark:text-slate-100 text-xl leading-relaxed">
-                It took you <strong>{endSeconds - startSeconds}</strong> seconds
+                It took you
+                {' '}
+                <strong>{endSeconds - startSeconds}</strong>
+                {' '}
+                seconds
                 to finish this game.
               </p>
             </div>
-            {/*footer*/}
+            {/* footer */}
             <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
               {outcome.score < outcome.maxScore && (
                 <button
@@ -140,9 +151,9 @@ const App = () => {
             <div className="px-4 py-4 w-full xl:basis-3/4">
               <Header text="Word Study &#8212; Week of October 17th, 2022" />
               <div className="flex flex-wrap md:gap-4 md:flex-nowrap">
-                {columns.map(({ category, words, description }, ndx) => (
+                {columns.map(({ category, words, description }) => (
                   <WordColumn
-                    key={ndx}
+                    key={category}
                     editable={gameMode}
                     header={category}
                     words={words}
@@ -150,11 +161,11 @@ const App = () => {
                   />
                 ))}
               </div>
-              {gameMode === "blind" && wordBoxWords ? (
+              {gameMode === 'blind' && wordBoxWords ? (
                 <WordBox words={wordBoxWords} />
               ) : null}
-              {gameMode === "writing" ?
-                <WritingPrompt word={writingPromptWord} />
+              {gameMode === 'writing'
+                ? <WritingPrompt word={writingPromptWord} />
                 : null }
               <div className="my-2">
                 <Alert show={showError} dismissible={{ onClose: () => setShowError(false) }} color="red">
@@ -178,7 +189,7 @@ const App = () => {
                       type="button"
                       onClick={() => {
                         setShowError(false);
-                        setError("");
+                        setError('');
                         dispatch(resetGameMode());
                       }}
                     >
@@ -219,7 +230,7 @@ const App = () => {
               setDark(!isDark);
             }}
           >
-            {isDark ? `Light Mode ` : `Dark Mode `}
+            {isDark ? 'Light Mode ' : 'Dark Mode '}
             {isDark ? (
               <FontAwesomeIcon icon={faSun} />
             ) : (
@@ -230,6 +241,6 @@ const App = () => {
       </div>
     </div>
   );
-};
+}
 
 export default App;

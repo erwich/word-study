@@ -1,54 +1,51 @@
-export const week = '2022-10-17';
-
-const data = [
-  {
-    category: 'VVC',
-    words: [
-      'chief',
-      'fruit',
-      'brief',
-      'scout',
-      'groan',
-      'stain',
-    ],
-    description: 'Two vowels followed by a consonent',
-  },
+export const week = '2022-10-24';
+export default [
   {
     category: 'VC',
     words: [
-      'wrap',
-      'twig',
-      'when',
-      'plot',
-      'clog',
-      'quit',
+      'get',
+      'swim',
+      'run',
+      'sit',
+      'shut',
+      'skip',
     ],
     description: 'Vowel followed by a consonent',
+  },
+  {
+    category: 'Double',
+    words: [
+      'getting',
+      'swimming',
+      'running',
+      'sitting',
+      'shutting',
+      'skipping',
+    ],
+    description: 'Word with a double consonent pair in the middle',
   },
   {
     category: 'VCC',
     words: [
-      'smell',
-      'sharp',
-      'thank',
-      'front',
-      'climb',
-      'trust',
+      'rest',
+      'yell',
+      'pick',
+      'stand',
+      'pass',
+      'jump',
     ],
     description: 'Vowel followed by a consonent',
   },
   {
-    category: 'VCe',
+    category: 'Nothing',
     words: [
-      'whine',
-      'theme',
-      'brave',
-      'scale',
-      'phone',
-      'quote',
+      'resting',
+      'yelling',
+      'picking',
+      'standing',
+      'passing',
+      'jumping',
     ],
-    description: "Vowel followed by a consonent, ending in 'e'",
+    description: 'No special rules',
   },
 ];
-
-export default data;

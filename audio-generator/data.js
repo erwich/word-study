@@ -1,50 +1,50 @@
 export default [
-    {
-        category: "VVC",
-        words: [
-            "chief",
-            "fruit",
-            "brief",
-            "scout",
-            "groan",
-            "stain",
-        ],
-        description: "Two vowels followed by a consonent",
-    },
-    {
-        category: "VC",
-        words: [
-            "wrap",
-            "twig",
-            "when",
-            "plot",
-            "clog",
-            "quit",
-        ],
-        description: "Vowel followed by a consonent",
-    },
-    {
-        category: "VCC",
-        words: [
-            "smell",
-            "sharp",
-            "thank",
-            "front",
-            "climb",
-            "trust",
-        ],
-        description: "Vowel followed by a consonent",
-    },
-    {
-        category: "VCe",
-        words: [
-            "whine",
-            "theme",
-            "brave",
-            "scale",
-            "phone",
-            "quote",
-        ],
-        description: "Vowel followed by a consonent, ending in 'e'",
-    },
-]
+  {
+    category: 'VC',
+    words: [
+      'get',
+      'swim',
+      'run',
+      'sit',
+      'shut',
+      'skip',
+    ],
+    description: 'Vowel followed by a consonent',
+  },
+  {
+    category: 'Double',
+    words: [
+      'getting',
+      'swimming',
+      'running',
+      'sitting',
+      'shutting',
+      'skipping',
+    ],
+    description: 'Word with a double consonent pair in the middle',
+  },
+  {
+    category: 'VCC',
+    words: [
+      'rest',
+      'yell',
+      'pick',
+      'stand',
+      'pass',
+      'jump',
+    ],
+    description: 'Vowel followed by a consonent',
+  },
+  {
+    category: 'Nothing',
+    words: [
+      'resting',
+      'yelling',
+      'picking',
+      'standing',
+      'passing',
+      'jumping',
+    ],
+    description: 'No special rules',
+  },
+];

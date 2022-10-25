@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[378],{8378:function(s,e,c){s.exports=c.p+"static/media/skip.d1d0ec9eb3d92c52a37c.mp3"}}]);

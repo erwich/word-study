@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[879],{2879:function(e,s,d){e.exports=d.p+"static/media/yelling.d4df7f8851be2271d41a.mp3"}}]);

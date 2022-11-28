@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[862],{9862:function(e,s,t){e.exports=t.p+"static/media/yell.6a87618b279b60ea9a69.mp3"}}]);

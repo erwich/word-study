@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[235],{9235:function(e,s,t){e.exports=t.p+"static/media/brief.e4708692157fc22b99f2.mp3"}}]);

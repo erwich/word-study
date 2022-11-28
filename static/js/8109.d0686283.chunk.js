@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[8109],{8109:function(s,e,t){s.exports=t.p+"static/media/humming.09699b52bffedffa674a.mp3"}}]);

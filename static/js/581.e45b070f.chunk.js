@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[581],{1581:function(e,s,d){e.exports=d.p+"static/media/jumping.928dde7e9e18a2f9dc3b.mp3"}}]);

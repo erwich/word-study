@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[371],{7371:function(s,e,t){s.exports=t.p+"static/media/whine.b57bf372652064f12628.mp3"}}]);

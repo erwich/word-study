@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[8025],{8025:function(s,t,e){s.exports=e.p+"static/media/hiking.25d5b5048f9f6ff1bab0.mp3"}}]);

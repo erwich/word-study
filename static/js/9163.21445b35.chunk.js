@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[9163],{9163:function(s,e,t){s.exports=t.p+"static/media/brave.715f74f5a6f4fa7d4715.mp3"}}]);

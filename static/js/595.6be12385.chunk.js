@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[595],{2595:function(s,e,t){s.exports=t.p+"static/media/resting.930cda32d526cfe5cd45.mp3"}}]);

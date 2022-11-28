@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[549],{7549:function(s,t,e){s.exports=e.p+"static/media/stain.97b26248282b92e33dbd.mp3"}}]);

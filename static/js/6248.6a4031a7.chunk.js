@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[6248],{6248:function(s,t,e){s.exports=e.p+"static/media/stopping.6719c33b3e05414addf4.mp3"}}]);

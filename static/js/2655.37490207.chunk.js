@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[2655],{2655:function(a,e,s){a.exports=s.p+"static/media/floating.9ea874ade8a6138a0168.mp3"}}]);

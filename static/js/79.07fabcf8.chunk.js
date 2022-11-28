@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[79],{79:function(e,s,d){e.exports=d.p+"static/media/spelling.76305cd76ea9d7ce92fd.mp3"}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[6867],{6867:function(d,s,t){d.exports=t.p+"static/media/fixing.b7b94c068d9590dadfd5.mp3"}}]);

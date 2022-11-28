@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[3519],{3519:function(e,s,t){e.exports=t.p+"static/media/jogging.0346f0525178451e083e.mp3"}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[2650],{2650:function(e,s,t){e.exports=t.p+"static/media/begging.ee46bb3b5275c789020d.mp3"}}]);

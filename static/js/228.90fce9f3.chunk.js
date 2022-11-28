@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[228],{1228:function(e,s,t){e.exports=t.p+"static/media/groan.26af74e3ea533c69090d.mp3"}}]);

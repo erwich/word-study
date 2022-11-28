@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[9495],{9495:function(e,s,t){e.exports=t.p+"static/media/grinning.5f3598fcaae8b71c77e8.mp3"}}]);

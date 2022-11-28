@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[8196],{8196:function(s,c,e){s.exports=e.p+"static/media/growling.49c70cb7f985f20d1ce1.mp3"}}]);

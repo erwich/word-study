@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[207],{207:function(e,s,t){e.exports=t.p+"static/media/cheering.8fe5c1111b243e5e0991.mp3"}}]);

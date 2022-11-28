@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[6742],{6742:function(a,e,s){a.exports=s.p+"static/media/talking.2ef7ca43ed640159a1aa.mp3"}}]);

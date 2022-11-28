@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[2001],{2001:function(s,e,c){s.exports=c.p+"static/media/snowing.e94c03de36cc221257b9.mp3"}}]);

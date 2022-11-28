@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[1681],{1681:function(e,s,t){e.exports=t.p+"static/media/quote.55cbf7fd72516a51d9e4.mp3"}}]);

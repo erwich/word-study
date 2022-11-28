@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkword_study=self.webpackChunkword_study||[]).push([[5458],{5458:function(t,s,e){t.exports=e.p+"static/media/cutting.b224f3f613f41e2a34d3.mp3"}}]);

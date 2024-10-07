@@ -151,7 +151,7 @@ function App() {
         <div className="container flex-1 mx-auto pt-2">
           <div className="flex flex-col lg:flex-row flex-wrap py-4">
             <div className="px-4 py-4 w-full xl:basis-3/4">
-              <Header text="Word Study &#8212; Week of November 28th, 2022" />
+              <Header text="Word Study &#8212; Week of October 7th, 2024" />
               <div className="flex flex-wrap md:gap-4 md:flex-nowrap">
                 {columns.map(({ category, words, description }) => (
                   <WordColumn
